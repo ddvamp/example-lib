@@ -1,7 +1,9 @@
 // the configured options and settings for example
+//
+// clang-format off
 
 #ifndef DDVAMP_EXAMPLE_CONFIG_HPP_INCLUDED_
-#define DDVAMP_EXAMPLE_CONFIG_HPP_INCLUDED_
+#define DDVAMP_EXAMPLE_CONFIG_HPP_INCLUDED_ 1
 
 #define EXAMPLE_VERSION_MAJOR @example_VERSION_MAJOR@
 #define EXAMPLE_VERSION_MINOR @example_VERSION_MINOR@
