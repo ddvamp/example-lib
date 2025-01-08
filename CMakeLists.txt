@@ -1,9 +1,10 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.12)
 
 project(
   example # sets PROJECT_NAME
-  VERSION 0.0.1
+  VERSION 0.0.2
   DESCRIPTION "project to study CMake"
+  HOMEPAGE_URL "https://github.com/ddvamp/example"
   LANGUAGES CXX
 )
 
