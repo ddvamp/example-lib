@@ -1,0 +1,10 @@
+// the configured options and settings for example
+
+#ifndef DDVAMP_EXAMPLE_CONFIG_HPP_INCLUDED_
+#define DDVAMP_EXAMPLE_CONFIG_HPP_INCLUDED_
+
+#define EXAMPLE_VERSION_MAJOR @example_VERSION_MAJOR@
+#define EXAMPLE_VERSION_MINOR @example_VERSION_MINOR@
+#define EXAMPLE_VERSION_PATCH @example_VERSION_PATCH@
+
+#endif /* DDVAMP_EXAMPLE_CONFIG_HPP_INCLUDED_ */
