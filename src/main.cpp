@@ -1,5 +1,8 @@
-#include <config.hpp>
+#include "config.hpp"
 
+#include <liba/src/liba.hpp>
+
+#include <format>
 #include <iostream>
 
 int main(int argc, char **argv) {
@@ -7,7 +10,7 @@ int main(int argc, char **argv) {
             << EXAMPLE_VERSION_MINOR << '.' << EXAMPLE_VERSION_PATCH
             << std::endl;
 
-  std::cout << "Hello, world!" << std::endl;
+  std::cout << std::format("Hello, world#{}!", FooA()) << std::endl;
 
   return 0;
 }

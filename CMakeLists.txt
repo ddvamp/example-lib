@@ -1,29 +1,43 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.21)
 
 project(
-  example # sets PROJECT_NAME
-  VERSION 0.0.4
-  DESCRIPTION "project to study CMake"
+  example
+  VERSION 0.1.0
+  DESCRIPTION "Project to study CMake"
   HOMEPAGE_URL "https://github.com/ddvamp/example"
   LANGUAGES CXX
 )
 
-set(proj_name ${PROJECT_NAME})
-set(proj_dir ${PROJECT_SOURCE_DIR})
+if (NOT PROJECT_IS_TOP_LEVEL)
+  message(FATAL_ERROR "Project must be top-level")
+endif()
 
-set(CMAKE_CXX_COMPILER "/usr/bin/clang++") # avoid this
-set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_executable(${proj_name})
+set(name ${PROJECT_NAME})
+set(dir ${PROJECT_SOURCE_DIR})
 
-configure_file(${proj_dir}/config.hpp.in config.hpp @ONLY)
+configure_file(${dir}/src/cmake/config.hpp.in ${dir}/src/config.hpp @ONLY)
 
-target_include_directories(
-  ${proj_name}
-  PUBLIC ${PROJECT_BINARY_DIR}
-  PUBLIC ${proj_dir}
+add_executable(${name})
+
+set_target_properties(
+  ${name} PROPERTIES
+  CXX_STANDARD 23
+  CXX_STANDARD_REQUIRED ON
+  CXX_EXTENSIONS OFF
+
+  # RUNTIME_OUTPUT_DIRECTORY "${dir}/build"
 )
 
-target_sources(${proj_name} PUBLIC ${proj_dir}/main.cpp)
+add_subdirectory(${dir}/lib/liba)
+
+target_link_libraries(${name} PRIVATE liba::liba)
+
+file(GLOB_RECURSE sources ${dir}/src/*.cpp)
+if (NOT sources)
+  message(FATAL_ERROR "Sources not found in ${dir}/src")
+endif()
+
+target_include_directories(${name} PUBLIC ${dir} ${dir}/lib)
+target_sources(${name} PUBLIC ${sources})
