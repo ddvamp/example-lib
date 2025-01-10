@@ -26,6 +26,8 @@ set_target_properties(
   CXX_STANDARD 23
   CXX_STANDARD_REQUIRED ON
   CXX_EXTENSIONS OFF
+  SOVERSION ${PROJECT_VERSION_MAJOR}
+  VERSION ${PROJECT_VERSION}
 
   # RUNTIME_OUTPUT_DIRECTORY "${dir}/build"
 )
@@ -35,6 +37,7 @@ add_subdirectory(${dir}/lib/liba)
 target_link_libraries(${name} PRIVATE liba::liba)
 
 file(GLOB_RECURSE sources ${dir}/src/*.cpp)
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${sources})
 if (NOT sources)
   message(FATAL_ERROR "Sources not found in ${dir}/src")
 endif()
