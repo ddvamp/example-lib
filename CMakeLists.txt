@@ -29,7 +29,9 @@ else()
   add_library(${name} INTERFACE)
 endif()
 
-target_include_directories(${name} INTERFACE ${dir}/.. PRIVATE ${dir}/src)
+set(headers ${dir}/..)
+cmake_path(NORMAL_PATH headers)
+target_include_directories(${name} INTERFACE ${headers} PRIVATE ${dir}/src)
 
 add_library(${name}::${name} ALIAS ${name})
 
