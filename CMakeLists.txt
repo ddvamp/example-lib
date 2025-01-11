@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.31)
 
 project(
   liba
-  VERSION 0.0.1
+  VERSION 0.1.0
   DESCRIPTION "Some library to study CMake"
   HOMEPAGE_URL "https://github.com/ddvamp/example"
   LANGUAGES CXX
@@ -29,7 +29,7 @@ else()
   add_library(${name} INTERFACE)
 endif()
 
-target_include_directories(${name} PRIVATE ${dir}/src)
+target_include_directories(${name} INTERFACE ${dir}/.. PRIVATE ${dir}/src)
 
 add_library(${name}::${name} ALIAS ${name})
 
