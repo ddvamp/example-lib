@@ -20,15 +20,16 @@ set(dir ${PROJECT_SOURCE_DIR})
 file(GLOB_RECURSE sources ${dir}/src/*.cpp)
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${sources})
 
-target_include_directories(${name} PRIVATE ${dir}/src)
 if (sources)
-  message(STATUS "Object library: ${name}")
-  add_library(${name} OBJECT)
-  target_sources(${name} PRIVATE ${sources})
+message(STATUS "Object library: ${name}")
+add_library(${name} OBJECT)
+target_sources(${name} PRIVATE ${sources})
 else()
-  message(STATUS "Interface library: ${name}")
-  add_library(${name} INTERFACE)
+message(STATUS "Interface library: ${name}")
+add_library(${name} INTERFACE)
 endif()
+
+target_include_directories(${name} PRIVATE ${dir}/src)
 
 add_library(${name}::${name} ALIAS ${name})
 
