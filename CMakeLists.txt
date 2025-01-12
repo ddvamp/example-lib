@@ -18,7 +18,6 @@ set(name ${PROJECT_NAME})
 set(dir ${PROJECT_SOURCE_DIR})
 
 file(GLOB_RECURSE sources ${dir}/src/*.cpp)
-source_group(TREE "${dir}" FILES ${sources})
 
 if (sources)
   set(type object)
