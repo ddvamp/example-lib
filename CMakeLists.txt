@@ -12,7 +12,7 @@ set(name ${PROJECT_NAME})
 set(dir ${PROJECT_SOURCE_DIR})
 
 if (PROJECT_IS_TOP_LEVEL)
-  message(FATAL_ERROR "$The {name} project must not be top-level")
+  message(FATAL_ERROR "The ${name} project must not be top-level")
 endif()
 
 file(GLOB_RECURSE sources ${dir}/src/*.cpp)
@@ -29,8 +29,6 @@ message(STATUS "The ${name} library is of ${type} type")
 set(headers ${dir}/..)
 cmake_path(NORMAL_PATH headers)
 target_include_directories(${name} INTERFACE ${headers} PRIVATE ${dir}/src)
-
-add_library(${name}::${name} ALIAS ${name})
 
 set_target_properties(
   ${name} PROPERTIES
